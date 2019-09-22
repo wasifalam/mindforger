@@ -298,6 +298,7 @@ public slots:
     void doActionHelpCheckForUpdates();
     void doActionHelpAboutMindForger();
 
+    // other slot handlers
     void executeFts(const std::string& pattern, const FtsSearch searchMode, Outline* scope=nullptr) const;
 
 private:

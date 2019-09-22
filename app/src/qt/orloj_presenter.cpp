@@ -69,6 +69,11 @@ OrlojPresenter::OrlojPresenter(MainWindowPresenter* mainPresenter,
         SIGNAL(selectionChanged(const QItemSelection&, const QItemSelection&)),
         this,
         SLOT(slotShowNoteAsFtsResult(const QItemSelection&, const QItemSelection&)));
+    QObject::connect(
+        view->getNotesTable(),
+        SIGNAL(signalFtsOpenOutlineOfNote()),
+        this,
+        SLOT(slotFtsOpenOutlineOfNote()));
     // click Tag in Tags to view Recall by Tag detail
     QObject::connect(
         view->getRecentNotesTable()->selectionModel(),
@@ -470,6 +475,23 @@ void OrlojPresenter::slotShowNoteAsFtsResult(const QItemSelection& selected, con
         mainPresenter->getStatusBar()->showInfo(QString(tr("No Notebook selected!")));
     }
 }
+
+void OrlojPresenter::slotFtsOpenOutlineOfNote()
+{
+    QItemSelectionModel* select = notesTablePresenter->getView()->selectionModel();
+    QModelIndexList indices = select->selectedRows();
+    if(indices.size()) {
+        const QModelIndex& index = indices.at(0);
+        QStandardItem* item = notesTablePresenter->getModel()->itemFromIndex(index);
+        // TODO make my role constant
+        Note* note = item->data(Qt::UserRole + 1).value<Note*>();
+        showFacetOutline(note->getOutline());
+        showFacetNoteView(note);
+    } else {
+        mainPresenter->getStatusBar()->showInfo(QString(tr("No Notebook selected!")));
+    }
+}
+
 
 void OrlojPresenter::slotShowRecentNote(const QItemSelection& selected, const QItemSelection& deselected)
 {

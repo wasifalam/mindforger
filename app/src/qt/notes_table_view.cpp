@@ -39,9 +39,7 @@ void NotesTableView::keyPressEvent(QKeyEvent* event)
     switch(event->key()) {
     case Qt::Key_Return:
         MF_DEBUG("NotesTableView::keyPressEvent ENTER" << std::endl);
-        // TODO open selected note for edit
-        // emit signalOpenNoteOnFts();
-        // emit signalOutlineOrNoteEdit();
+        emit signalFtsOpenOutlineOfNote();
         break;
     }
 }

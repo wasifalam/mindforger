@@ -40,6 +40,9 @@ public:
 
     virtual void keyPressEvent(QKeyEvent* event) override;
     virtual void resizeEvent(QResizeEvent* event) override;
+
+signals:
+    void signalFtsOpenOutlineOfNote();
 };
 
 }
