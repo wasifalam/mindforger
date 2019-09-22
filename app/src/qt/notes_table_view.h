@@ -38,6 +38,7 @@ public:
     NotesTableView &operator=(const NotesTableView&) = delete;
     NotesTableView &operator=(const NotesTableView&&) = delete;
 
+    virtual void keyPressEvent(QKeyEvent* event) override;
     virtual void resizeEvent(QResizeEvent* event) override;
 };
 

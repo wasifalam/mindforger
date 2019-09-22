@@ -34,9 +34,21 @@ NotesTableView::NotesTableView(QWidget *parent)
     setTabKeyNavigation(false);
 }
 
+void NotesTableView::keyPressEvent(QKeyEvent* event)
+{
+    switch(event->key()) {
+    case Qt::Key_Return:
+        MF_DEBUG("NotesTableView::keyPressEvent ENTER" << std::endl);
+        // TODO open selected note for edit
+        // emit signalOpenNoteOnFts();
+        // emit signalOutlineOrNoteEdit();
+        break;
+    }
+}
+
 void NotesTableView::resizeEvent(QResizeEvent* event)
 {
-    UNUSED_ARG(event);
+    MF_DEBUG("NotesTableView::resizeEvent " << event << std::endl);
 
     if(horizontalHeader()->length() > 0) {
         // ensure that 1st column gets the remaining space from others

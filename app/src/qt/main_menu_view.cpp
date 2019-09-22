@@ -346,7 +346,12 @@ MainMenuView::MainMenuView(MainWindowView& mainWindowView)
 
     // menu: Note
 
+#ifdef __APPLE__
+    actionNoteNew = new QAction(tr("New"), mainWindow);
+    actionNoteNew->setShortcut(QKeySequence(Qt::CTRL+Qt::Key_N));
+#else
     actionNoteNew = new QAction(tr("&New"), mainWindow);
+#endif
     actionNoteNew->setStatusTip(tr("Create new Note to form new ideas, principles, combinations and applications"));
 
     actionNoteHoist= new QAction(tr("&Hoist"), mainWindow);
