@@ -42,4 +42,8 @@ cd ${SCRIPT_HOME}/../..
 qmake -r mindforger.pro
 make -j 8
 
+
+
+
+
 # eof
